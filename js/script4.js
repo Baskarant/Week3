@@ -4,11 +4,11 @@ d3.json("data/contPopData.json",function(error,data){
    //console.log(data);
    createChart(data);
 });
-function createChart(data) {
 
-/*  data.sort(function(a,b){
+function createChart(data) {
+/* data.sort(function(a,b){
     return b.population-a.population;
-  });*/
+  }); */
   var margin = {top: 20, right: 20, bottom: 70, left: 80},
     width = 1000 - margin.left - margin.right,
     height = 400 - margin.top - margin.bottom;
@@ -20,12 +20,10 @@ var xAxis = d3.svg.axis()
     .scale(x)
     .orient("bottom")
 
-
 var yAxis = d3.svg.axis()
     .scale(y)
     .orient("left")
     .ticks(12);
-
 
 // add the SVG element
 var svg = d3.select("body").append("svg")

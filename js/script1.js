@@ -4,6 +4,7 @@ d3.json("data/popData.json",function(error,data){
    //console.log(data);
    createChart(data);
 });
+
 //  sorting data into decreasing
 function createChart(data) {
   data.sort(function(a,b){
