@@ -12,6 +12,7 @@ fs.readFile('data/datafile.csv', 'utf8', function (err,data) {
   var jsonData = [];
   // getting the headers in the header line
   var headerLine=lines[0].split(",");
+  
   // creating a object for each line
   for(var i=1;i<(lines.length)-2;i++){
     var obj = {};
@@ -32,8 +33,9 @@ fs.readFile('data/datafile.csv', 'utf8', function (err,data) {
      obj.population = val["Population (Millions) - 2013"];
      popData.push(obj);
      //console.log(obj);
-
   });
+  
   console.log(JSON.stringify(popData,null,2));
   //console.log(JSON.stringify(jsonData, null, 2)); //converting the array in proper JSON Format
+  
 });
