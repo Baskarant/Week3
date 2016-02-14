@@ -1,3 +1,5 @@
+//  load the json data from "data" location
+
 d3.json("data/popData.json",function(error,data){
   if(error)
    return console.warn(error);
@@ -10,6 +12,8 @@ function createChart(data) {
   data.sort(function(a,b){
     return b.population-a.population;
   });
+
+// console.log(data);
 
   var margin = {top: 20, right: 20, bottom: 70, left: 80},
     width = 1000 - margin.left - margin.right,

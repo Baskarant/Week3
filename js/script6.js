@@ -7,7 +7,6 @@ visualize(data);
 });
 
 function visualize(data) {
-
   var buildOut = function(dataSeriesCount) {
       var currentXOffsets = [];
       var current_xIndex = 0;
@@ -27,7 +26,6 @@ function visualize(data) {
       }
   }
 
-
     var n = 3, // number of layers
     m = data.length, // number of samples per layer
     stack = d3.layout.stack() ,
@@ -40,13 +38,11 @@ function visualize(data) {
     yGroupMax = d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d.y; }); }),
     yStackMax = d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d.y0 + d.y; }); });
 
-    console.log(layers);
+    // console.log(layers);
 
     var margin = {top: 40, right: 10, bottom: 20, left: 10},
         width = 1340 - margin.left - margin.right,
         height = 550 - margin.top - margin.bottom;
-
-
 
     var x = d3.scale.ordinal()
         .rangeRoundBands([0, 1*width], .08);
@@ -69,14 +65,11 @@ var xAxis = d3.svg.axis()
     .tickPadding(6)
     .orient("bottom");
 
-
-
 var svg = d3.select("body").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
 
 var layer = svg.selectAll(".layer")
     .data(layers)
@@ -108,9 +101,10 @@ svg.append("g")
 
 d3.selectAll("input").on("change", change);
 
+//  change automatically time accord 5000 milli second
 var timeout = setTimeout(function() {
   d3.select("input[value=\"grouped\"]").property("checked", true).each(change);
-}, 2000);
+}, 5000);
 
 function change() {
   clearTimeout(timeout);
@@ -118,9 +112,9 @@ function change() {
   else transitionStacked();
 }
 
+//  for groupbar
 function transitionGrouped() {
   y.domain([0, yGroupMax]);
-
      rect.transition()
       .duration(500)
       .delay(function(d, i) { return i * 10; })
@@ -131,9 +125,9 @@ function transitionGrouped() {
       .attr("height", function(d) { return height - y(d.y); });
 }
 
+//  for stack bar
 function transitionStacked() {
   y.domain([0, yStackMax]);
-
   rect.transition()
       .duration(500)
       .delay(function(d, i) { return i * 10; })
